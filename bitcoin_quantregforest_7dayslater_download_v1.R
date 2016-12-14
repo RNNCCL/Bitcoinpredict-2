@@ -876,7 +876,7 @@ test_set <- matrix_data[-train,]
 
 ################# Feature selection with Boruta ##################3
 
-'''
+
 ### feature selection with Boruta:
 require(Boruta)  
 set.seed(4)
@@ -889,11 +889,11 @@ boruta.train <- Boruta(train_set$BTC_next_day ~.
 plot(boruta.train)  
 
 
-relevant_features <- getSelectedAttributes(boruta.train)'''
+relevant_features <- getSelectedAttributes(boruta.train)
 
 
 qf1 <- quantregForest(y = train_set$BTC_next_day 
-                      , x = train_set[,!(names(train_set) %in% c("BTC_next_day"))]
+                      , x = train_set[,(names(train_set) %in% relevant_features)]
                       , ntree = 5000
                       #, mtry = 40
                       , corr.bias = T
